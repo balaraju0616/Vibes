@@ -17,22 +17,22 @@ const Feed = () => {
   }, [])
   
   return !loading ? (
-    <div className="h-full overflow-y-auto">
-      {/* Stories Bar - At the top */}
-      <StoriesBar/>
-      
-      {/* Main Content */}
-      <div className="flex justify-center py-10 xl:pr-5 xl:gap-8">
-        {/* Posts Section */}
-        <div className="flex-1 max-w-2xl">
-          <div className='p-4 space-y-6'>
-            List of post
+    <div className="h-full overflow-hidden py-10 xl:pr-5 flex items-start justify-center xl:gap-8">
+      <div className="flex-1 ml-56 xl:ml-64 py-10 flex items-start justify-center xl:gap-8 h-screen overflow-hidden">
+        {/* Main content with width for exactly 4 stories + Create Story button */}
+        <div className="w-full max-w-[28rem] overflow-hidden">
+          {/* StoriesBar - will show exactly 4 stories + Create Story button visible */}
+          <StoriesBar/>
+          
+          {/* List of post directly below */}
+          <div className='p-4'>
+            <h2 className="text-xl font-semibold">List of post</h2>
           </div>
         </div>
-
+        
         {/* Right Sidebar */}
-        <div className="hidden xl:block w-80 space-y-4">
-          <div className="bg-white p-4 rounded-lg shadow">
+        <div className="hidden xl:block w-80">
+          <div className="bg-white p-4 rounded-lg shadow mb-4">
             <h1 className="font-semibold">Sponsored</h1>
           </div>
           <div className="bg-white p-4 rounded-lg shadow">
