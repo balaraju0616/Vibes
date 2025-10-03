@@ -26,8 +26,8 @@ export const menuItemsData = [
 export const dummyUserData = {
     "_id": "user_2zdFoZib5lNr614LgkONdD8WG32",
     "email": "admin@example.com",
-    "full_name": "Balu",
-    "username": "Balu",
+    "full_name": "John Warren",
+    "username": "john_warren",
     "bio": "🌍 Dreamer | 📚 Learner | 🚀 Doer\r\nExploring life one step at a time.\r\n✨ Staying curious. Creating with purpose.",
     "profile_picture": sample_profile,
     "cover_photo": sample_cover,
@@ -65,7 +65,7 @@ export const dummyStoriesData = [
         "media_url": "",
         "media_type": "text",
         "background_color": "#4f46e5",
-        "createdAt": "2025-10-01T08:16:06.958Z",
+        "createdAt": "2025-07-25T08:16:06.958Z",
         "updatedAt": "2025-07-25T08:16:06.958Z",
     },
     {
@@ -75,7 +75,7 @@ export const dummyStoriesData = [
         "media_url": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg",
         "media_type": "image",
         "background_color": "#4f46e5",
-        "createdAt": "2025-10-01T08:27:48.134Z",
+        "createdAt": "2025-07-25T08:27:48.134Z",
         "updatedAt": "2025-07-25T08:27:48.134Z",
     },
     {

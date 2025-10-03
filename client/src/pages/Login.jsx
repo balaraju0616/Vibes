@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div className='relative min-h-screen flex flex-row'>
       {/* Background Image */}
-      <img src={assets.bgImage} alt="" className="absolute top-0 left-0 -z-10 w-full h-full object-cover" />
+      <img src={assets.bgImage} alt="" className="absolute top-0 left-0 -z-1 w-full h-full object-cover" />
 
 
       {/* left side : Branding */}
@@ -19,12 +19,12 @@ const Login = () => {
           <img src={assets.group_users} alt="" className='h-8 md:h-10' />
           <div>
             <div className='flex'>
-              {Array(5).fill(0).map((_, i) => (<Star key={i} size={24} stroke="#f59e0b" fill="#f59e0b"  />))}
+              {Array(5).fill(0).map((_, i) => (<Star key={i} className='size-4 md:size-4.5 text transparent fill-amber-500' />))}
             </div>
             <p>Used by developers</p>
           </div>
         </div>
-        <h1 className="text-3xl md:text-6xl font-extrabold leading-tight text-[#2564eb]">
+        <h1 className="text-3xl md:text-6xl md:pb-2 font-bold bg-gradient-to-r from-indigo-950 to-indigo-800 bg-clip-text text-transparent">
   More than just friends, truly connect
 </h1>
 
