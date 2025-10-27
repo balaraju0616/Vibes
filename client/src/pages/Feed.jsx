@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { dummyPostsData } from '../assets/assets'
+import { dummyPostsData, assets } from '../assets/assets'
 import Loading from '../components/Loading'
 import StoriesBar from '../components/StoriesBar'
+import PostCard from '../components/PostCard'
+import RecentMessages from '../components/RecentMessages'
 
 const Feed = () => {
-  const [feeds, setfeeds] = useState([])
+  const [feeds, setFeeds] = useState([])
   const [loading, setLoading] = useState(true)
   
   const fetchFeeds = async () => {
-    setfeeds(dummyPostsData)
+    setFeeds(dummyPostsData)
     setLoading(false);
   }
 
@@ -17,28 +19,26 @@ const Feed = () => {
   }, [])
   
   return !loading ? (
-    <div className="h-full overflow-hidden py-10 xl:pr-5 flex items-start justify-center xl:gap-8">
-      <div className="flex-1 ml-56 xl:ml-64 py-10 flex items-start justify-center xl:gap-8 h-screen overflow-hidden">
-        {/* Main content with width for exactly 4 stories + Create Story button */}
-        <div className="w-full max-w-[28rem] overflow-hidden">
-          {/* StoriesBar - will show exactly 4 stories + Create Story button visible */}
-          <StoriesBar/>
-          
-          {/* List of post directly below */}
-          <div className='p-4'>
-            <h2 className="text-xl font-semibold">List of post</h2>
-          </div>
+    <div className='h-full overflow-y-scroll no-scrollbar py-10 xl:pr-5 flex items-start justify-center xl:gap-8'>
+      {/* Stories and post list */}
+      <div>
+        <StoriesBar />
+        <div className='p-4 space-y-6'>
+          {feeds.map((post) => {
+            return <PostCard key={post._id} post={post} />
+          })}
         </div>
+      </div>
         
-        {/* Right Sidebar */}
-        <div className="hidden xl:block w-80">
-          <div className="bg-white p-4 rounded-lg shadow mb-4">
-            <h1 className="font-semibold">Sponsored</h1>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h1 className="font-semibold">Recent messages</h1>
-          </div>
+      {/* Right Sidebar */}
+      <div className='max-xl:hidden sticky top-0'>
+        <div className='max-w-xs bg-white text-xs p-4 rounded-md inline-flex flex-col gap-2 shadow'>
+          <h3 className='text-slate-800 font-semibold'>Sponsored</h3>
+          <img src={assets.sponsored_img} className='w-75 h-50 rounded-md' alt="" />
+          <p className='text-slate-600'>Email marketing</p>
+          <p className='text-slate-400'>Supercharge your marketing with a powerful, easy-to-use platform built for results.</p>
         </div>
+        <RecentMessages/>
       </div>
     </div>
   ) : <Loading />;

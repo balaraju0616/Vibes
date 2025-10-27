@@ -1,5 +1,6 @@
 import { ArrowLeft, Sparkle } from 'lucide-react'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'; // Import toast
 
 const StoryModal = ({ setShowModal }) => {
     const bgColors = ["#4f46e5", "#7c3aed", "#db2777", "#e11d48", "#ca8a04", "#0d9488"]
@@ -20,7 +21,32 @@ const StoryModal = ({ setShowModal }) => {
     }
 
     const handleCreateStory = async () => {
-        // Empty function
+        // Simulate API call or story creation
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Add your story creation logic here
+                console.log({ mode, background, text, media });
+                
+                // Simulate success
+                resolve();
+                
+                // If there's an error, you can reject:
+                // reject(new Error('Failed to create story'));
+            }, 1000);
+        });
+    }
+
+    const handleCreateStoryWithToast = async () => {
+        try {
+            await toast.promise(handleCreateStory(), {
+                loading: 'Saving...',
+                success: <p>Story Added</p>,
+                error: (e) => `Error: ${e.message}`,
+            });
+            setShowModal(false); // Close modal after success
+        } catch (error) {
+            // Error is already handled by toast
+        }
     }
 
     return (
@@ -110,7 +136,7 @@ const StoryModal = ({ setShowModal }) => {
 
                 {/* Create Story Button */}
                 <button
-                    onClick={handleCreateStory}
+                    onClick={handleCreateStoryWithToast}
                     className="w-full flex items-center justify-center gap-2 p-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-medium transition-all text-sm"
                 >
                     <Sparkle size={16} /> Create Story
