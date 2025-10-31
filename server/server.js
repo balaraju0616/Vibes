@@ -5,7 +5,7 @@ import connectDB from './configs/db.js';
 import { inngest, functions } from './inngest/index.js'
 import { serve } from 'inngest/express';
 import userRouter from './routes/userRoutes.js';
-import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'; // ← Import
+import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node';
 import postRouter from './routes/postRoutes.js';
 import storyRouter from './routes/storyRoutes.js';
 import messageRouter from './routes/messageRoutes.js';
@@ -27,7 +27,28 @@ app.use(express.json());
 app.use(cors());
 
 // Add Clerk middleware HERE - after other middleware, before routes
-app.use(ClerkExpressWithAuth()); // ← ADD THIS LINE
+app.use(ClerkExpressWithAuth());
+
+// ADD THESE TEST ROUTES:
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'Server is working on Vercel',
+    timestamp: new Date().toISOString(),
+    env: {
+      clerkSecret: !!process.env.CLERK_SECRET_KEY,
+      clerkPublishable: !!process.env.CLERK_PUBLISHABLE_KEY,
+      mongoUri: !!process.env.MONGO_URI
+    }
+  });
+});
+
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'Test route working - no auth required',
+    timestamp: new Date().toISOString()
+  });
+});
 
 app.get('/', (req, res) => res.send('Server is running'));
 app.use("/api/inngest", serve({ client: inngest, functions }));
