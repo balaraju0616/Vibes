@@ -26,10 +26,20 @@ await connectDB();
 app.use(express.json());
 app.use(cors());
 
-// Add Clerk middleware HERE - after other middleware, before routes
-app.use(ClerkExpressWithAuth());
+// MAKE CLERK OPTIONAL - Only use if environment variables exist
+if (process.env.CLERK_SECRET_KEY && process.env.CLERK_PUBLISHABLE_KEY) {
+  console.log('Initializing Clerk middleware');
+  app.use(ClerkExpressWithAuth());
+} else {
+  console.log('Clerk environment variables missing - skipping Clerk middleware');
+  // Create a mock auth middleware
+  app.use((req, res, next) => {
+    req.auth = { userId: 'mock-user-id' };
+    next();
+  });
+}
 
-// ADD THESE TEST ROUTES:
+// Test routes
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
