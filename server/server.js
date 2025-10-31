@@ -10,6 +10,15 @@ import postRouter from './routes/postRoutes.js';
 import storyRouter from './routes/storyRoutes.js';
 import messageRouter from './routes/messageRoutes.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// DEBUG: Check if Clerk env vars are loaded
+console.log('CLERK_SECRET_KEY exists:', !!process.env.CLERK_SECRET_KEY);
+console.log('CLERK_SECRET_KEY length:', process.env.CLERK_SECRET_KEY?.length);
+console.log('CLERK_PUBLISHABLE_KEY exists:', !!process.env.CLERK_PUBLISHABLE_KEY);
+
 const app = express();
 
 await connectDB();
