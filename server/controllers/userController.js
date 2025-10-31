@@ -192,7 +192,7 @@ const connection = await Connection.findOne({
 })
 
 if (!connection) {
-    const newConnection | await Connection.create({
+    const newConnection = await Connection.create({
         from_user_id: userId,
         to_user_id: id
     })

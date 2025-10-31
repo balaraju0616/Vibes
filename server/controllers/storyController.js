@@ -1,12 +1,12 @@
 import fs from "fs";
 import imagekit from "../configs/imageKit.js";
-import Story from "../models/Story";
-import User from "../models/User";
+import Story from "../models/Story.js";
+import User from "../models/User.js";
 import { inngest } from "../inngest/index.js";
 
 //Add User Story
 
-export const adStory = async (requestAnimationFrame,res) => {
+export const addUserStory = async (requestAnimationFrame,res) => {
   try {
     const { userId } = req.auth;
     const { content, media_type, background_color } = req.body;

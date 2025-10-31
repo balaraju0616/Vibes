@@ -1,6 +1,6 @@
 import fs from "fs"; 
-import imagekit from "../configs/imageKit";
-import Message from "../models/Message";
+import imagekit from "../configs/imageKit.js";
+import Message from "../models/Message.js";
 
 //Create an empty object to store SS Event connections
 const connections = {};
@@ -101,7 +101,7 @@ export const getMessages=async(req,res)=> {
   }
 }
 
-export default getUserRecentMessages=async(req,res)=> {
+export const getUserRecentMessages=async(req,res)=> {
   try {
     const {userId}=req.auth();
     const messages=await Message.find({to_user_id:userId}).populate('from_user_id to_user_id').sort({createdAt:-1});
