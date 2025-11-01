@@ -5,7 +5,7 @@ import connectDB from './configs/db.js';
 import { inngest, functions } from './inngest/index.js'
 import { serve } from 'inngest/express';
 import userRouter from './routes/userRoutes.js';
-import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'; // ← Import
+import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'; 
 import postRouter from './routes/postRoutes.js';
 import storyRouter from './routes/storyRoutes.js';
 import messageRouter from './routes/messageRoutes.js';
