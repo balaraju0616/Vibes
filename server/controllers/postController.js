@@ -7,7 +7,7 @@ import User from "../models/User.js";
 export const addPost = async (req, res) => {
     try {
         const { userId } = req.auth;
-        const { content, post_type } = req.body;
+        const { content, postType } = req.body;
         const images = req.files;
 
         let image_urls = [];
@@ -38,7 +38,7 @@ return url
     user: userId,
     content,
     image_urls,
-    post_type
+    post_type:postType
 })
 
 res.json({ success: true, message: "Post created successfully" });

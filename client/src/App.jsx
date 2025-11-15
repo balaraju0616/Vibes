@@ -12,15 +12,28 @@ import CreatePost from './pages/CreatePost'
 import {useUser,useAuth} from '@clerk/clerk-react'
 import Layout from './pages/Layout'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchUser } from './features/user/userSlice'
+
 const App = () => {
+  
   const {user} =useUser()
   const {getToken} =useAuth()
 
+  const dispatch=useDispatch()
+
   useEffect(()=> {
+    const fetchData=async()=> {
+
     if(user){
-      getToken().then((token)=>console.log(token))
+      const token=await getToken()
+      dispatch(fetchUser(token))
     }
-  },[user])
+  }
+  fetchData()
+
+  },[user, getToken, dispatch])
+
   return (
     <>
     <Routes>
